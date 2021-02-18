@@ -60,7 +60,7 @@ var checkAnswer = function (currentLevel) {
             document.body.classList.remove('game-over');
         }, 200);
         titleLevel.innerText =
-            'Fim de jogo, clique no butão ou pressione qualquer tecla para jogar novamente';
+            'Fim de jogo, clique no Botão ou pressione qualquer tecla para jogar novamente';
         startButton.style.display = 'block';
         startButton.innerText = 'novamente';
         startButton.classList.replace('eightbit-btn--proceed', 'eightbit-btn--reset');

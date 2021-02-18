@@ -71,7 +71,7 @@ const checkAnswer = (currentLevel: number) => {
     }, 200);
 
     titleLevel.innerText =
-      'Fim de jogo, clique no butão ou pressione qualquer tecla para jogar novamente';
+      'Fim de jogo, clique no Botão ou pressione qualquer tecla para jogar novamente';
 
     startButton.style.display = 'block';
     startButton.innerText = 'novamente';
