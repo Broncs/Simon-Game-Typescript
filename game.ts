@@ -3,6 +3,9 @@ const buttonRed = document.querySelector('#red') as HTMLButtonElement;
 const buttonYellow = document.querySelector('#yellow') as HTMLButtonElement;
 const buttonBlue = document.querySelector('#blue') as HTMLButtonElement;
 const titleLevel = document.querySelector('h1') as HTMLHeadingElement;
+const startButton = document.querySelector(
+  '.eightbit-btn'
+) as HTMLButtonElement;
 
 const buttonColours: string[] = ['red', 'blue', 'green', 'yellow'];
 let userClickedPattern: string[] = [];
@@ -66,7 +69,16 @@ const checkAnswer = (currentLevel: number) => {
     setTimeout(() => {
       document.body.classList.remove('game-over');
     }, 200);
-    titleLevel.innerText = 'Game Over, Press Any Key to Restart';
+
+    titleLevel.innerText =
+      'Fim de jogo, clique no butão ou pressione qualquer tecla para jogar novamente';
+
+    startButton.style.display = 'block';
+    startButton.innerText = 'novamente';
+    startButton.classList.replace(
+      'eightbit-btn--proceed',
+      'eightbit-btn--reset'
+    );
     startOver();
   }
 };
@@ -81,7 +93,16 @@ window.addEventListener('keypress', () => {
     nextSequence();
   }
   started = true;
+  startButton.style.display = 'none';
 });
+startButton.addEventListener('click', () => {
+  if (!started) {
+    nextSequence();
+  }
+  started = true;
+  startButton.style.display = 'none';
+});
+
 const startOver = () => {
   level = 0;
   gamePattern = [];

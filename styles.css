@@ -1,3 +1,6 @@
+* {
+  box-sizing: border-box;
+}
 body {
   text-align: center;
   background-color: #011f3f;
@@ -5,17 +8,15 @@ body {
 
 #level-title {
   font-family: 'Press Start 2P', cursive;
-  font-size: 3rem;
-  margin: 5%;
+  font-size: 2.5rem;
+  margin: 30px;
   color: #fef2bf;
 }
 
 .container {
   display: block;
   margin: auto;
-}
-.row {
-  width: 100%;
+  width: 80%;
 }
 
 .btn {
@@ -25,6 +26,68 @@ body {
   width: 200px;
   border: 10px solid black;
   border-radius: 20%;
+}
+
+/* 8 bit button  */
+.eightbit-btn {
+  background: #92cd41;
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  font-size: 20px;
+  padding: 20px;
+  font-family: 'Press Start 2P', cursive;
+  text-decoration: none;
+  color: white;
+  box-shadow: inset -4px -4px 0px 0px #4aa52e;
+  margin: 1rem auto;
+}
+.eightbit-btn:hover,
+.eightbit-btn:focus {
+  background: #76c442;
+  box-shadow: inset (-4px * 1.5) (-4px * 1.5) 0px 0px #4aa52e;
+}
+
+.eightbit-btn:active {
+  box-shadow: inset 4px 4px 0px 0px #4aa52e;
+}
+
+.eightbit-btn:before,
+.eightbit-btn:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  box-sizing: content-box;
+}
+
+.eightbit-btn:before {
+  top: -6px;
+  left: 0;
+  border-top: 6px black solid;
+  border-bottom: 6px black solid;
+}
+
+.eightbit-btn:after {
+  left: -6px;
+  top: 0;
+  border-left: 6px black solid;
+  border-right: 6px black solid;
+}
+
+/* reset button */
+.eightbit-btn--reset {
+  background: #e76e55;
+  box-shadow: inset -4px -4px 0px 0px #8c2022;
+}
+.eightbit-btn--reset:hover,
+.eightbit-btn--reset:focus {
+  background: #ce372b;
+  box-shadow: inset -4px * 1.5 -4px * 1.5 0px 0px #8c2022;
+}
+
+.eightbit-btn--reset:active {
+  box-shadow: inset 4px 4px 0px 0px #8c2022;
 }
 
 .game-over {
@@ -62,10 +125,20 @@ body {
     opacity: 0;
   }
 }
-
-@media screen and (max-width: 730px) {
+@media screen and (max-width: 700px) {
   #level-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .btn {
+    width: 130px;
+    height: 130px;
+    margin: 10px;
+  }
+  .row-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 }

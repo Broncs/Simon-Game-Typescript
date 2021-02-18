@@ -4,6 +4,7 @@ var buttonRed = document.querySelector('#red');
 var buttonYellow = document.querySelector('#yellow');
 var buttonBlue = document.querySelector('#blue');
 var titleLevel = document.querySelector('h1');
+var startButton = document.querySelector('.eightbit-btn');
 var buttonColours = ['red', 'blue', 'green', 'yellow'];
 var userClickedPattern = [];
 var gamePattern = [];
@@ -58,7 +59,11 @@ var checkAnswer = function (currentLevel) {
         setTimeout(function () {
             document.body.classList.remove('game-over');
         }, 200);
-        titleLevel.innerText = 'Game Over, Press Any Key to Restart';
+        titleLevel.innerText =
+            'Fim de jogo, clique no butão ou pressione qualquer tecla para jogar novamente';
+        startButton.style.display = 'block';
+        startButton.innerText = 'novamente';
+        startButton.classList.replace('eightbit-btn--proceed', 'eightbit-btn--reset');
         startOver();
     }
 };
@@ -71,6 +76,14 @@ window.addEventListener('keypress', function () {
         nextSequence();
     }
     started = true;
+    startButton.style.display = 'none';
+});
+startButton.addEventListener('click', function () {
+    if (!started) {
+        nextSequence();
+    }
+    started = true;
+    startButton.style.display = 'none';
 });
 var startOver = function () {
     level = 0;
