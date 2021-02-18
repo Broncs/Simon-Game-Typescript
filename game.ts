@@ -6,15 +6,14 @@ const titleLevel = document.querySelector('h1') as HTMLHeadingElement;
 
 const buttonColours: string[] = ['red', 'blue', 'green', 'yellow'];
 let userClickedPattern: string[] = [];
-const gamePattern: string[] = [];
+let gamePattern: string[] = [];
 let level = 0;
 let started = false;
 
-// random COlor
-
+// random Color
 const nextSequence = () => {
   level++;
-
+  userClickedPattern = [];
   titleLevel.innerText = `Level ${level}`;
 
   const randomNumber = Math.floor(Math.random() * 4);
@@ -53,8 +52,8 @@ const animatePress = (currentColour: string) => {
   }, 100);
 };
 
-const checkAnswer = (userChosenColour: number) => {
-  if (userClickedPattern[userChosenColour] == gamePattern[userChosenColour]) {
+const checkAnswer = (currentLevel: number) => {
+  if (userClickedPattern[currentLevel] == gamePattern[currentLevel]) {
     if (userClickedPattern.length === gamePattern.length) {
       setTimeout(() => {
         nextSequence();
@@ -62,7 +61,13 @@ const checkAnswer = (userChosenColour: number) => {
       }, 1000);
     }
   } else {
-    console.log('game over');
+    playSound('wrong');
+    document.body.classList.add('game-over');
+    setTimeout(() => {
+      document.body.classList.remove('game-over');
+    }, 200);
+    titleLevel.innerText = 'Game Over, Press Any Key to Restart';
+    startOver();
   }
 };
 
@@ -77,22 +82,8 @@ window.addEventListener('keypress', () => {
   }
   started = true;
 });
-
-// const blink = () => {
-//   const buttonSelected = document.getElementById(
-//     `${buttonColours[randomChosenColour]}`
-//   )!;
-//   buttonSelected.classList.add('blink_me');
-//   const audio = new Audio(`/sounds/${buttonColours[randomChosenColour]}.mp3`);
-//   audio.play();
-// };
-
-// const handleClick = (e: Event) => {
-//   const userChosenColour = (e.target as Element).id;
-//   console.log(userChosenColour);
-// };
-
-// buttonGreen.addEventListener('click', handleClick);
-// buttonRed.addEventListener('click', handleClick);
-// buttonYellow.addEventListener('click', handleClick);
-// buttonBlue.addEventListener('click', handleClick);
+const startOver = () => {
+  level = 0;
+  gamePattern = [];
+  started = false;
+};

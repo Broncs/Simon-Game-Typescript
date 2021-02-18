@@ -9,9 +9,10 @@ var userClickedPattern = [];
 var gamePattern = [];
 var level = 0;
 var started = false;
-// random COlor
+// random Color
 var nextSequence = function () {
     level++;
+    userClickedPattern = [];
     titleLevel.innerText = "Level " + level;
     var randomNumber = Math.floor(Math.random() * 4);
     var randomChosenColour = buttonColours[randomNumber];
@@ -42,8 +43,8 @@ var animatePress = function (currentColour) {
         buttonSelected.classList.remove('pressed');
     }, 100);
 };
-var checkAnswer = function (userChosenColour) {
-    if (userClickedPattern[userChosenColour] == gamePattern[userChosenColour]) {
+var checkAnswer = function (currentLevel) {
+    if (userClickedPattern[currentLevel] == gamePattern[currentLevel]) {
         if (userClickedPattern.length === gamePattern.length) {
             setTimeout(function () {
                 nextSequence();
@@ -52,7 +53,13 @@ var checkAnswer = function (userChosenColour) {
         }
     }
     else {
-        console.log('game over');
+        playSound('wrong');
+        document.body.classList.add('game-over');
+        setTimeout(function () {
+            document.body.classList.remove('game-over');
+        }, 200);
+        titleLevel.innerText = 'Game Over, Press Any Key to Restart';
+        startOver();
     }
 };
 buttonGreen.addEventListener('click', handleClick);
@@ -65,19 +72,8 @@ window.addEventListener('keypress', function () {
     }
     started = true;
 });
-// const blink = () => {
-//   const buttonSelected = document.getElementById(
-//     `${buttonColours[randomChosenColour]}`
-//   )!;
-//   buttonSelected.classList.add('blink_me');
-//   const audio = new Audio(`/sounds/${buttonColours[randomChosenColour]}.mp3`);
-//   audio.play();
-// };
-// const handleClick = (e: Event) => {
-//   const userChosenColour = (e.target as Element).id;
-//   console.log(userChosenColour);
-// };
-// buttonGreen.addEventListener('click', handleClick);
-// buttonRed.addEventListener('click', handleClick);
-// buttonYellow.addEventListener('click', handleClick);
-// buttonBlue.addEventListener('click', handleClick);
+var startOver = function () {
+    level = 0;
+    gamePattern = [];
+    started = false;
+};
