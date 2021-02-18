@@ -12,8 +12,10 @@ body {
 
 .container {
   display: block;
-  width: 50%;
   margin: auto;
+}
+.row {
+  width: 100%;
 }
 
 .btn {
@@ -58,5 +60,12 @@ body {
 @keyframes blinker {
   40% {
     opacity: 0;
+  }
+}
+
+@media screen and (max-width: 730px) {
+  #level-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
   }
 }
